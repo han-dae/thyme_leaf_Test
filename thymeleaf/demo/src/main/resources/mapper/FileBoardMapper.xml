@@ -39,4 +39,8 @@
     INSERT INTO file(b_no, filename, fileoriginname, fileurl) 
     VALUES(#{b_no}, #{filename}, #{fileoriginname}, #{fileurl})
   </insert>
+
+  <select id="fileDetail" parameterType="int" resultType="com.example.demo.bean.FileVO">
+  select * from file where b_no=#{b_no}
+  </select>
 </mapper>
