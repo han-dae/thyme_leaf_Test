@@ -9,6 +9,7 @@
     <div>
       <div style="padding: 10px; text-align: center">
         <h1>
+          
           <a th:href="@{/fileBoard/list}" style="text-decoration: none"
             >게시글 수정</a
           >
@@ -21,6 +22,10 @@
           th:action="@{/fileBoard/updateProc}"
           method="post"
           enctype="multipart/form-data"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0c60248b9e466aaeac0298f5458fa447c90d9c5f
         >
           <div>
             <label for="title" style="font-weight: bolder">제목</label>
@@ -47,10 +52,22 @@
           <div>
             <label for="content" style="font-weight: bolder">내용</label><br />
             <textarea id="content" name="content" rows="15" cols="50">
-[[${detail.content}]]
-  </textarea
-            >
+              [[${detail.content}]]
+            </textarea>
+
+            
           </div>
+          <label for="filepath"> 파일경로</label>
+          
+            <input type="file" name="files" />
+          
+          <a ></a>
+
+          <div th:if="${file != null}" >            
+            <div>[[${file.fileoriginname}]]</div>
+            <a th:href="@{/fileBoard/deleteProc/{bno}(bno=${file.b_no})}">삭제</a>
+          </div>          
+
           <div style="text-align: right">
             <input type="hidden" name="b_no" th:value="${detail.b_no}" />
             <input

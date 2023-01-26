@@ -15,6 +15,7 @@
     WHERE b_no=#{b_no}
   </select>
   
+  
   <insert id="fileBoardInsert" parameterType="com.example.demo.bean.FileBoardVO" keyProperty="b_no">
     INSERT INTO file_board(title, content, writer) 
     VALUES(#{title}, #{content}, #{writer})
@@ -46,4 +47,10 @@
     INSERT INTO file(b_no, filename, fileoriginname, fileurl) 
     VALUES(#{b_no}, #{filename}, #{fileoriginname}, #{fileurl})
   </insert>
+
+  <select id="fileDetail" parameterType="int" resultType="com.example.demo.bean.FileVO">
+  select * from file where b_no=#{b_no}
+  </select>
+<delete id="fileDelete" parameterType="int">
+delete from file where b_no=#{b_no}</delete>
 </mapper>

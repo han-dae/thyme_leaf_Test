@@ -9,17 +9,22 @@ import com.example.demo.bean.FileVO;
 
 @Mapper
 public interface FileBoardMapper {
-    List<FileBoardVO> getFileBoardList(); // 게시글 리스트 출력
+    List<FileBoardVO> getFileBoardList(); 
 
-    FileBoardVO fileBoardDetail(int b_no); // 게시글 세부내용 보기
+    FileBoardVO fileBoardDetail(int b_no); 
 
-    int fileBoardInsert(FileBoardVO fileBoard); // 게시글 생성
+    int fileBoardInsert(FileBoardVO fileBoard); 
 
-    int fileBoardUpdate(FileBoardVO fileBoard); // 게시글 수정
+    int fileBoardUpdate(FileBoardVO fileBoard); 
 
-    int fileBoardDelete(int bno); // 게시글 삭제
+    int fileBoardDelete(int bno); 
 
     int fileInsert(FileVO file);
+<<<<<<< HEAD
 
     int fileUpdate(FileVO file);
+=======
+    FileVO fileDetail(int b_no);
+    int fileDelete(int b_no);
+>>>>>>> 0c60248b9e466aaeac0298f5458fa447c90d9c5f
 }

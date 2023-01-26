@@ -45,7 +45,20 @@ public class FileBoardServiceImpl implements FileBoardService {
     }
 
     @Override
+<<<<<<< HEAD
     public int fileUpdate(FileVO file) {
         return fileboardmapper.fileUpdate(file);
     }
+=======
+    public FileVO fileDetail(int b_no){
+        return fileboardmapper.fileDetail(b_no);
+    }
+
+    @Override
+    public int fileDelete(int b_no){
+        return fileboardmapper.fileDelete(b_no);
+    }
+
+   
+>>>>>>> 0c60248b9e466aaeac0298f5458fa447c90d9c5f
 }
