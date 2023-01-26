@@ -106,16 +106,17 @@ public class FileBoardController {
     @RequestMapping("/update/{b_no}")
     private String fileBoardUpdateForm(@PathVariable("b_no") int b_no, Model model) {
         model.addAttribute("detail", fboardService.fileBoardDetail(b_no));
+        model.addAttribute("file", fboardService.fileDetail(b_no));
         return "fileBoard/update";
     }
 
     @RequestMapping("/updateProc")
-    private String fileBoardUpdateProc(@ModelAttribute FileBoardVO board) {
-
+    private String fileBoardUpdateProc(@ModelAttribute FileBoardVO board, @RequestPart MultipartFile files) {
+      
         fboardService.fileBoardUpdate(board);
         int bno = board.getB_no();
         String b_no = Integer.toString(bno);
-        return "redirect:/fileBoard/detail" + b_no;
+        return "redirect:/fileBoard/detail/" + b_no;
     }
 
     @RequestMapping("/delete/{b_no}")
@@ -123,6 +124,14 @@ public class FileBoardController {
         fboardService.fileBoardDelete(b_no);
         return "redirect:/fileBoard/list";
     }
+    @RequestMapping("/deleteProc/{b_no}")
+    private String fileDelete(@PathVariable("b_no") int b_no){
+ 
+    fboardService.fileDelete(b_no);
+    String bno = Integer.toString(b_no);
+  return "redirect:/fileBoard/detail/" + b_no;
+    }
+
 
     @RequestMapping("/fileDown/{b_no}")
   private void fileDown(@PathVariable("b_no") int b_no, HttpServletRequest request, 
