@@ -41,7 +41,7 @@ public class FileBoardController {
     @RequestMapping("/detail/{b_no}")
     private String fileBoardDetail(@PathVariable("b_no") int b_no, Model model) {
         model.addAttribute("detail", fboardService.fileBoardDetail(b_no));
-        return "fileBoard/detail/";
+        return "fileBoard/detail";
     }
 
     @RequestMapping("/insert")
@@ -57,21 +57,19 @@ public class FileBoardController {
             fboardService.fileBoardInsert(board);
 
         } else {
-            String fileName = files.getOriginalFilename(); // 사용자 컴에 저장된 파일명 그대로
-            // 확장자
+            String fileName = files.getOriginalFilename();
             String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
-            File destinationFile; // DB에 저장할 파일 고유명
+            File destinationFile;
             String destinationFileName;
-            // 절대경로 설정 안해주면 지 맘대로 들어가버려서 절대경로 박아주었습니다.
-            String fileUrl = "/Users";
 
-            do { // 우선 실행 후
-                 // 고유명 생성
+            String fileUrl = "C:/Users/holy han/thymeleaf/demo/src/main/resources/static/file";
+
+            do {
                 destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
-                destinationFile = new File(fileUrl + destinationFileName); // 합쳐주기
+                destinationFile = new File(fileUrl + destinationFileName);
             } while (destinationFile.exists());
 
-            destinationFile.getParentFile().mkdirs(); // 디렉토리
+            destinationFile.getParentFile().mkdirs();
             files.transferTo(destinationFile);
 
             fboardService.fileBoardInsert(board);
@@ -85,7 +83,7 @@ public class FileBoardController {
             fboardService.fileInsert(file);
         }
 
-        return "forward:/fileBoard/list"; // 객체 재사용
+        return "forward:/fileBoard/list";
     }
 
     @RequestMapping("/update/{b_no}")

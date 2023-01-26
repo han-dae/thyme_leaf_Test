@@ -62,13 +62,14 @@
             <input type="file" name="files" />
           </div>
           <div style="text-align: right">
+            <button><a href="/fileBoard/list">목록</a></button>
+
+            <input type="submit" th:value="작성" />
             <input
-              type="submit"
-              th:value="목록"
+              type="reset"
+              th:value="취소"
               th:formaction="@{/fileBoard/list}"
             />
-            <input type="submit" th:value="작성" />
-            <input type="reset" th:value="취소" />
           </div>
         </form>
       </div>
