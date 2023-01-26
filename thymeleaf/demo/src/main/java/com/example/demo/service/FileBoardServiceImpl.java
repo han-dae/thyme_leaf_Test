@@ -43,4 +43,9 @@ public class FileBoardServiceImpl implements FileBoardService {
     public int fileInsert(FileVO file) {
         return fileboardmapper.fileInsert(file);
     }
+
+    @Override
+    public int fileUpdate(FileVO file) {
+        return fileboardmapper.fileUpdate(file);
+    }
 }

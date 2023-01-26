@@ -20,6 +20,7 @@
           th:object="${fileBoardVO}"
           th:action="@{/fileBoard/updateProc}"
           method="post"
+          enctype="multipart/form-data"
         >
           <div>
             <label for="title" style="font-weight: bolder">제목</label>
@@ -39,6 +40,9 @@
               th:value="${detail.writer}"
               disabled="disabled"
             />
+          </div>
+          <div>
+            <input type="file" name="files" />
           </div>
           <div>
             <label for="content" style="font-weight: bolder">내용</label><br />

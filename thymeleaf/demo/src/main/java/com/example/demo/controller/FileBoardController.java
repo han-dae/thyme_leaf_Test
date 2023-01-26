@@ -93,9 +93,30 @@ public class FileBoardController {
     }
 
     @RequestMapping("/updateProc")
-    private String fileBoardUpdateProc(@ModelAttribute FileBoardVO board) {
-
+    private String fileBoardUpdateProc(@ModelAttribute FileBoardVO board, @RequestPart MultipartFile files)
+            throws IllegalStateException, IOException {
+        files.getOriginalFilename();
         fboardService.fileBoardUpdate(board);
+        String fileName = files.getOriginalFilename();
+        String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
+        File destinationFile;
+        String destinationFileName;
+
+        String fileUrl = "C:/Users/holy han/thymeleaf/demo/src/main/resources/static/file";
+
+        destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
+        destinationFile = new File(fileUrl + destinationFileName);
+        destinationFile.getParentFile().mkdirs();
+        files.transferTo(destinationFile);
+
+        FileVO file = new FileVO();
+        file.setB_no(board.getB_no());
+        file.setFilename(destinationFileName);
+        file.setFileoriginname(fileName);
+        file.setFileurl(fileUrl);
+
+        fboardService.fileUpdate(file);
+
         int bno = board.getB_no();
         String b_no = Integer.toString(bno);
         return "redirect:/fileBoard/detail/" + b_no;

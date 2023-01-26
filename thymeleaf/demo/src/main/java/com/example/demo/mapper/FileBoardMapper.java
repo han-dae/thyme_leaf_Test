@@ -20,4 +20,6 @@ public interface FileBoardMapper {
     int fileBoardDelete(int bno); // 게시글 삭제
 
     int fileInsert(FileVO file);
+
+    int fileUpdate(FileVO file);
 }

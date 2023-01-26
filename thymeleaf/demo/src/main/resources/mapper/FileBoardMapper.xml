@@ -27,7 +27,14 @@
     <if test="content != null">content=#{content}</if>
     WHERE b_no=#{b_no}
   </update>
-  
+  <update id="fileUpdate" parameterType="com.example.demo.bean.FileVO">
+  UPDATE file set 
+    <if test="filename != null">filename=#{filename}</if>,
+    <if test="fileoriginname != null">fileoriginname=#{fileoriginname}</if>,
+    <if test="fileurl != null">fileurl=#{fileurl}</if>
+    WHERE b_no=#{b_no}
+</update>
+
   <delete id="fileBoardDelete" parameterType="int">
     DELETE FROM file_board WHERE b_no=#{b_no}
   </delete>
