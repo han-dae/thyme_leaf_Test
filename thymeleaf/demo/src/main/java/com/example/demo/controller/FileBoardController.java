@@ -48,10 +48,6 @@ public class FileBoardController {
 
     @RequestMapping("/detail/{b_no}")
     private String fileBoardDetail(@PathVariable("b_no") int b_no, Model model) {
-<<<<<<< HEAD
-        model.addAttribute("detail", fboardService.fileBoardDetail(b_no));
-        return "fileBoard/detail";
-=======
       model.addAttribute("detail", fboardService.fileBoardDetail(b_no));
       
       if(fboardService.fileDetail(b_no) == null) {
@@ -61,7 +57,6 @@ public class FileBoardController {
         return "fileBoard/detail";
       }
    
->>>>>>> 0c60248b9e466aaeac0298f5458fa447c90d9c5f
     }
   
 
@@ -78,18 +73,6 @@ public class FileBoardController {
             fboardService.fileBoardInsert(board);
 
         } else {
-<<<<<<< HEAD
-            String fileName = files.getOriginalFilename();
-            String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
-            File destinationFile;
-            String destinationFileName;
-
-            String fileUrl = "C:/Users/holy han/thymeleaf/demo/src/main/resources/static/file";
-
-            do {
-                destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
-                destinationFile = new File(fileUrl + destinationFileName);
-=======
             String fileName = files.getOriginalFilename(); 
        
             String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
@@ -101,7 +84,6 @@ public class FileBoardController {
             do { 
                 destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
                 destinationFile = new File(fileUrl + destinationFileName); 
->>>>>>> 0c60248b9e466aaeac0298f5458fa447c90d9c5f
             } while (destinationFile.exists());
 
             destinationFile.getParentFile().mkdirs();
@@ -118,11 +100,7 @@ public class FileBoardController {
             fboardService.fileInsert(file);
         }
 
-<<<<<<< HEAD
-        return "forward:/fileBoard/list";
-=======
         return "forward:/fileBoard/list"; 
->>>>>>> 0c60248b9e466aaeac0298f5458fa447c90d9c5f
     }
 
     @RequestMapping("/update/{b_no}")
@@ -133,21 +111,19 @@ public class FileBoardController {
     }
 
     @RequestMapping("/updateProc")
-<<<<<<< HEAD
     private String fileBoardUpdateProc(@ModelAttribute FileBoardVO board, @RequestPart MultipartFile files)
             throws IllegalStateException, IOException {
         files.getOriginalFilename();
-=======
-    private String fileBoardUpdateProc(@ModelAttribute FileBoardVO board, @RequestPart MultipartFile files) {
-      
->>>>>>> 0c60248b9e466aaeac0298f5458fa447c90d9c5f
+        if (files.isEmpty()) {
+          fboardService.fileInsert(board);
+        }else{
         fboardService.fileBoardUpdate(board);
         String fileName = files.getOriginalFilename();
         String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase();
         File destinationFile;
         String destinationFileName;
 
-        String fileUrl = "C:/Users/holy han/thymeleaf/demo/src/main/resources/static/file";
+        String fileUrl = "C:\\Users\\smhrd\\Desktop\\thymeleaf\\thymeleaf\\demo\\src\\main\\resources\\files\\";
 
         destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;
         destinationFile = new File(fileUrl + destinationFileName);
@@ -161,7 +137,7 @@ public class FileBoardController {
         file.setFileurl(fileUrl);
 
         fboardService.fileUpdate(file);
-
+        }
         int bno = board.getB_no();
         String b_no = Integer.toString(bno);
         return "redirect:/fileBoard/detail/" + b_no;

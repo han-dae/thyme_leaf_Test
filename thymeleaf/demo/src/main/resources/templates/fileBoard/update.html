@@ -22,10 +22,6 @@
           th:action="@{/fileBoard/updateProc}"
           method="post"
           enctype="multipart/form-data"
-<<<<<<< HEAD
-=======
-
->>>>>>> 0c60248b9e466aaeac0298f5458fa447c90d9c5f
         >
           <div>
             <label for="title" style="font-weight: bolder">제목</label>
@@ -46,9 +42,7 @@
               disabled="disabled"
             />
           </div>
-          <div>
-            <input type="file" name="files" />
-          </div>
+         
           <div>
             <label for="content" style="font-weight: bolder">내용</label><br />
             <textarea id="content" name="content" rows="15" cols="50">
@@ -67,7 +61,7 @@
             <div>[[${file.fileoriginname}]]</div>
             <a th:href="@{/fileBoard/deleteProc/{bno}(bno=${file.b_no})}">삭제</a>
           </div>          
-
+          <a th:href="@{/fileBoard/insertFile/{bno}(bno=${detail.b_no})}">추가</a>
           <div style="text-align: right">
             <input type="hidden" name="b_no" th:value="${detail.b_no}" />
             <input
